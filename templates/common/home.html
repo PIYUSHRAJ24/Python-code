@@ -1,0 +1,31 @@
+{% extends 'common/index.html' %}
+
+{% block menu %}
+    {% include 'menu/menu.html' %}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+   <div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'image/4107263.jpg'  %}"  class="d-block w-100" alt="img-not found">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'image/download.jpg' %}" class="d-block w-100" alt="img-not found">
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="img-not found">
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>How it works<h2>
+       <p> The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.
+        
+        In browsers where the Page Visibility API is supported, the carousel will avoid sliding when the webpage is not visible to the user (such as when the browser tab is inactive, the browser window is minimized, etc.).
+    </div>
+   </div>
+{% endblock %}

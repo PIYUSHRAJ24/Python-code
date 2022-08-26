@@ -1,0 +1,20 @@
+{% extends 'common/index.html' %}
+
+{% block menu %}
+    {% include 'menu/menu.html' %}
+{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="container">
+    <h1> Registration Page</h1>
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form.as_ul}}    
+        <input type="submit" class="btn btn-primary" value="Register">
+    </form>
+</div>
+{% endblock %}

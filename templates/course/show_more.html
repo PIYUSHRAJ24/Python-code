@@ -1,0 +1,157 @@
+{% extends 'common/index.html' %}
+{% load static %}
+
+<!-- {% load course_custom %} -->
+
+{% block menu %}
+    {% include 'menu/menu.html' %}
+{% endblock %}
+
+{% block body %}
+
+    <style>
+
+        .no-preview{
+            cursor: not-allowed;
+        }
+        #video_list{
+            overflow-y: scroll;
+        }
+        #video_list a{
+            text-decoration: none;
+        }
+
+        .active-video{
+           background-color: grey;
+           color: white;
+           
+        }
+
+        .active-video:hover{
+            text-decoration: none;
+
+        }
+        .active-video-link{
+           background-color: grey;
+           color: white;
+       }
+
+        .active-video-link:hover{
+           text-decoration: none;
+           color: white;
+       }
+
+
+
+    </style>
+
+
+     <div class="container-fluid">
+        <br>
+        <div class="card p-3">
+            <!-- videos start  -->
+        <div class="row">
+        <div class="col">
+            <iframe id="player" width="100%" height="430" src="https://www.youtube.com/embed/{{video_get.video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div>
+            </div>
+        </div>
+        <!-- videos end -->
+
+
+        <!-- videos list -->
+        <div class="col-3">
+            <ul class="list-group" id="video_list">
+                {% for video in video %}
+                    <li id="active-video" class="list-group-item
+                    {% if video == video_get %} active-video {% endif %}">
+                        <a class="
+                        {% if video == video_get %} active-video-link {% endif %}" 
+                        href="?lecture={{video.serial_number}}">{{video}}</a>
+                    </li>
+                {% endfor%}             
+            </ul>
+        </div>
+        <!-- video list end -->
+
+        <!-- course details -->
+
+        <div class="mt-3">
+            <div>
+                <div class="card">
+  
+                    <div class="card-body">
+                    <h5 class="card-title">{{course.name}}</h5>
+                    <p class="card-text">{{ course.descripation}}</p>
+                    </div>
+                </div>
+        </div>
+        <!-- courser name -->
+
+        <!-- prerequisite -->
+
+         <div class="mt-3">
+            <div>
+                <div class="card">
+  
+                    <div class="card-body">
+                    <h5 class="card-title">Prerequisite</h5>
+                        {% for pre in pre %}
+
+                        <li class="">{{ pre.discription}}</li>
+
+                        {% endfor%}
+    
+                    </div>
+                </div>
+        </div>
+
+        <!-- end prerequisite -->
+
+        <div class="mt-3">
+            <div>
+                <div class="card">
+  
+                    <div class="card-body">
+                    <h5 class="card-title">Learning</h5>
+                    {% for lear in learn %}
+
+                    <li class="">{{ lear.discription}}</li>
+
+                    {% endfor%} 
+    
+                    </div>
+                </div>
+        </div>
+    </div>
+            
+        </div>
+    </div>
+
+<script>
+    
+    var player:
+    var video_list:
+
+    document.onreadystatechange = function(){
+        if (document.onreadystatechange == 'interactive') {
+            player = document.getElementById('player')
+            video_list = document.getElementById('video_list')
+            maintainRatio()
+
+        }
+    }
+
+    function maintainRatio(){
+        var w =player.clientWidth
+        var h =(w*9)/16
+        console.log({w,h});
+        player.height = h
+        video_list.style.maxHeight = h + "px"
+
+    }
+
+    main.onresize = maintainRatio
+</script>
+    
+{% endblock %}

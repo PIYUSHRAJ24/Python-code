@@ -1,0 +1,47 @@
+{% extends 'common/index.html' %}
+
+{% load course_custom %}
+
+{% block menu %}
+    {% include 'menu/menu.html' %}
+{% endblock %}
+
+{% block body %}
+
+    <style>
+        #price{
+            font-family: arial;
+        }
+    </style>
+
+    <div class="container-fluid">
+
+        <br>
+        <div class="row">
+        {% for uc in uc %}
+        <div class="col mx-auto">
+            <div class="card mx-auto" style="width: 18rem;">
+            <img src="{{ uc.course.thumbnail.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">{{ uc.course.name }}</h5>
+                </div>
+
+
+            <!-- footer -->
+            
+            <div class="card-footer">
+                <div class="row no-gutters">
+                
+                <div class="col border text-center">
+                    <a href="{% url 'show_more' uc.course.slug %}" 
+                    class="btn btn-outline-info btn-block">Watch Now</a>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

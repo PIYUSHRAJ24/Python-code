@@ -1,0 +1,21 @@
+{% extends 'common/index.html' %}
+
+{% load course_custom %}
+
+{% block menu %}
+    {% include 'menu/menu.html' %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Login</h1>
+    <form method = "POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Submit" >
+    </form>
+</div>
+
+
+{% endblock %}
